@@ -20,6 +20,7 @@ function WeatherForm({ callback = getWeather }) {
     const [text, setText] = useState("");
     const [description, setDescription] = useState("");
     const [cityList, setList] = useState([]);
+    const [narrow, setNarrow] = useState(false);
     const [showList, setShow] = useState(false);
     const [req, setReq] = useState([]);// сохраненные запросы с нашего сервера
     const [count, setCount] = useState(0);
@@ -27,6 +28,11 @@ function WeatherForm({ callback = getWeather }) {
     const [isHighSpeed, setHighSpeed] = useState(true);// достаточно ли высокая скорость чтоб подгружать данные с geonames
     const imgMood = description[2];// описание
     const cold = description[3] < 0;// температура
+
+    const isNarrow = window.innerWidth < 700;
+    useEffect(() => setNarrow(isNarrow));
+
+    
     
 
     function uniquer(list) {
@@ -203,7 +209,7 @@ function getServer() {
                                         }
                                     </List>
                         
-                                <WeatherDescription func={() => setShow(false)}
+                                <WeatherDescription narrow={narrow} func={() => setShow(false)}
                                 letter={description[0]} temper={description[1]}
                                 cloud={description[2]}>
                                 </WeatherDescription>
@@ -331,8 +337,8 @@ function List({ children }) {
     return <div className={styles.list}>{children}</div>;
 }
 
-function WeatherDescription({ func, letter, temper, cloud}) {
-    return (<div onMouseOver={func}  className={styles.weatherDescription}>{letter}<span style={{fontWeight: "bold"}}>{temper}</span><br></br>
+function WeatherDescription({ func, letter, temper, cloud, narrow}) {
+    return (<div onMouseOver={func}  className={styles.weatherDescription}>{letter}<span style={{fontWeight: "bold"}}>{temper}</span>{!narrow && <br></br>}
                 {cloud}</div>)
 }
 
