@@ -27,7 +27,7 @@ function WeatherForm({ callback = getWeather }) {
     const [isHighSpeed, setHighSpeed] = useState(true);// достаточно ли высокая скорость чтоб подгружать данные с geonames
     const imgMood = description[2];// описание
     const cold = description[3] < 0;// температура
-    text = transliterate(text);
+    
 
     function uniquer(list) {
         return list.filter((fl, index) => list.indexOf(fl) === index);
