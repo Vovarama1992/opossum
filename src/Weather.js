@@ -62,7 +62,7 @@ function WeatherForm({ callback = getWeather }) {
         let finalList = [];
         let transText = transliterate(text);
         console.log(text == transText);
-        let filteredReq = req.filter(r => r.value.startsWith(transText) || r.valuestartsWith(text));
+        let filteredReq = req.filter(r => r.value.startsWith(transText) || r.value.startsWith(text));
         let isSaved = filteredReq.length > 0;
         
         
