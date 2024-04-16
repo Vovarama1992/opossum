@@ -1,0 +1,55 @@
+.container {
+  position: absolute;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20vh;
+    margin-left: 20vw;
+    width: 50vw;
+    height: 50vh;
+    background: blue;
+  }
+  #firstlevel {
+    display: flex;
+    flex-direction: row;
+    height: 30%;
+    width: 100%;
+    background: white;
+    border: 1px solid black;
+    
+    
+  }
+  .letter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 33%;
+    text-align: center;
+  
+  }
+  img {
+    width: 5vw;
+    height: 8vh;
+  }
+  .imgWrapper {
+    width: 20%;
+    height: 50%;
+    margin-bottom: 2vh;
+    margin-top: 2vh;
+  }
+  @keyframes lighter {
+    0% {
+        background: blue;
+    }
+    100% {
+        background: red;
+    }
+  }
+  .lighter {
+    animation-name: lighter;
+    animation-duration: 500ms;
+    animation-iteration-count: 1;
+  animation-direction: normal;
+  }
+  .move{
+    transform: translate(25vw);
+  }
