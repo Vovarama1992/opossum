@@ -244,7 +244,7 @@ async function startWithFromApi(starts) {
     let arr = []; 
     starts = transliterate(starts);
     try {
-        let res = await fetch(`http://api.geonames.org/searchJSON?featureCode=PPLA&name_startsWith=${starts}&maxRows=5&username=vovarama13`);
+        let res = await fetch(`https://api.geonames.org/searchJSON?featureCode=PPLA&name_startsWith=${starts}&maxRows=5&username=vovarama13`);
         if (!res.ok) {
             throw new Error("error");
         }
