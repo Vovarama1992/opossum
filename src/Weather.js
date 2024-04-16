@@ -20,7 +20,7 @@ function WeatherForm({ callback = getWeather }) {
     const [text, setText] = useState("");
     const [description, setDescription] = useState("");
     const [cityList, setList] = useState([]);
-    const [narrow, setNarrow] = useState(false);
+    const [narrow, setNarrow] = useState(window.innerWidth < 800);
     const [showList, setShow] = useState(false);
     const [req, setReq] = useState([]);// сохраненные запросы с нашего сервера
     const [count, setCount] = useState(0);
@@ -29,8 +29,18 @@ function WeatherForm({ callback = getWeather }) {
     const imgMood = description[2];// описание
     const cold = description[3] < 0;// температура
 
-    const isNarrow = window.innerWidth < 700;
-    useEffect(() => setNarrow(isNarrow));
+    
+    useEffect(() => {
+        const handleResize = () => {
+          setNarrow(window.innerWidth < 800);
+        };
+    
+        window.addEventListener('resize', handleResize);
+    
+        return () => {
+          window.removeEventListener('resize', handleResize);
+        };
+      }, []);
 
     
     
