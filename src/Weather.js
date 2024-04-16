@@ -59,7 +59,9 @@ function WeatherForm({ callback = getWeather }) {
     
     useEffect(() => {
         let finalList = [];
-        let filteredReq = req.filter(r => r.value.startsWith(text));
+        let transText = transliterate(text);
+        console.log(text == transText);
+        let filteredReq = req.filter(r => r.value.startsWith(transText));
         let isSaved = filteredReq.length > 0;
         
         
@@ -76,12 +78,12 @@ function WeatherForm({ callback = getWeather }) {
 
         if (isHighSpeed) { // у пользователя достаточно быстрое соединение?
         
-        startWithFromApi(text).then(results => {
+        startWithFromApi(transText).then(results => {
         if (text.length > 0) {
-        let textText = text[0].toUpperCase() + text.slice(1); 
+        let textText = transText[0].toUpperCase() + transText.slice(1); 
         finalList = [...finalList, ...results];
         finalList = finalList.slice(0, 5);
-        finalList = finalList.filter(fl => fl.startsWith(text) || fl.startsWith(textText));
+        finalList = finalList.filter(fl => fl.startsWith(transText) || fl.startsWith(textText));
         finalList = uniquer(finalList);
         setList(finalList);
         setShow(true);
