@@ -61,7 +61,7 @@ function WeatherForm({ callback = getWeather }) {
     useEffect(() => {
         let finalList = [];
         let transText = transliterate(text);
-        console.log(text == transText);
+        
         let filteredReq = req.filter(r => r.value.startsWith(transText) || r.value.startsWith(text));
         let isSaved = filteredReq.length > 0;
         
@@ -121,7 +121,7 @@ function getServer() {
         const obj = {value: text};
         axios.post(`http://localhost:8000/submit`, obj).then(res => {
             
-        console.log(text);
+        console.log("Отправлены данные на сервер");
 
     }).catch(err => console.log(err));
 
