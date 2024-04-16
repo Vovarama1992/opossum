@@ -121,7 +121,7 @@ function getServer() {
         const obj = {value: text};
         axios.post(`http://localhost:8000/submit`, obj).then(res => {
             
-        console.log(`Req.length: ${req.length}`, res.data);
+        console.log(text);
 
     }).catch(err => console.log(err));
 
