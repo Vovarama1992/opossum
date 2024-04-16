@@ -217,7 +217,16 @@ function getServer() {
 
 
   
+function transliterate(text) {
+    const rusToLatMap = {
+        "а": "a", "б": "b", "в": "v", "г": "g", "д": "d", "е": "e", "ё": "yo", "ж": "zh", "з": "z", "и": "i",
+        "й": "y", "к": "k", "л": "l", "м": "m", "н": "n", "о": "o", "п": "p", "р": "r", "с": "s", "т": "t",
+        "у": "u", "ф": "f", "х": "h", "ц": "c", "ч": "ch", "ш": "sh", "щ": "sch", "ъ": "", "ы": "y", "ь": "'",
+        "э": "e", "ю": "yu", "я": "ya"
+    };
 
+    return text.split('').map(char => rusToLatMap[char.toLowerCase()] || char).join('');
+}
 
 
 
@@ -230,6 +239,7 @@ function getServer() {
 
 async function startWithFromApi(starts) {
     let arr = []; 
+    starts = transliterate(starts);
     try {
         let res = await fetch(`http://api.geonames.org/searchJSON?featureCode=PPLA&name_startsWith=${starts}&maxRows=5&username=vovarama13`);
         if (!res.ok) {
