@@ -122,7 +122,7 @@ function WeatherForm({ callback = getWeather }) {
 
     
     function getServer() {
-        axios.get('https://server-njj27n7vx-vladimirs-projects-80cebf7f.vercel.app/submissions')
+        axios.get('https://server-njj27n7vx-vladimirs-projects-80cebf7f.vercel.app/api/submissions')
             .then(response => { 
                 setReq(response.data);// получаем с нашего сервера обновленный список запросов
                 console.log("askFromServer");
@@ -132,9 +132,10 @@ function WeatherForm({ callback = getWeather }) {
             });
     }
     
+    // Функция для отправки данных на сервер
     function postServer() {
         const obj = {value: text};
-        axios.post(`https://server-njj27n7vx-vladimirs-projects-80cebf7f.vercel.app/submit`, obj)
+        axios.post(`https://server-njj27n7vx-vladimirs-projects-80cebf7f.vercel.app/api/submit`, obj)
             .then(res => {
                 console.log("Отправлены данные на сервер", res.data);
             })
