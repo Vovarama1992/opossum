@@ -121,26 +121,24 @@ function WeatherForm({ callback = getWeather }) {
     }, [text])
 
     
-function getServer() {
-        axios.get('http://localhost:8000/submissions')
-  .then(response => { 
-    setReq(response.data);// получаем с нашего сервера обновленный список запросов
-    console.log("askFromServer");
-  })
-  .catch(error => {
-    console.error('Ошибка при получении данных:', error);
-  });
-
+    function getServer() {
+        axios.get('https://server-njj27n7vx-vladimirs-projects-80cebf7f.vercel.app/submissions')
+            .then(response => { 
+                setReq(response.data);// получаем с нашего сервера обновленный список запросов
+                console.log("askFromServer");
+            })
+            .catch(error => {
+                console.error('Ошибка при получении данных:', error);
+            });
     }
+    
     function postServer() {
-        
         const obj = {value: text};
-        axios.post(`http://localhost:8000/submit`, obj).then(res => {
-            
-        console.log("Отправлены данные на сервер", res.data);
-
-    }).catch(err => console.log(err));
-
+        axios.post(`https://server-njj27n7vx-vladimirs-projects-80cebf7f.vercel.app/submit`, obj)
+            .then(res => {
+                console.log("Отправлены данные на сервер", res.data);
+            })
+            .catch(err => console.log(err));
     }
     
     
@@ -260,7 +258,7 @@ async function startWithFromApi(starts) {
     let arr = []; 
     starts = transliterate(starts);
     try {
-        let res = await fetch(`https://api.geonames.org/searchJSON?featureCode=PPLA&name_startsWith=${starts}&maxRows=5&username=vovarama13`);
+        let res = await fetch(`http://api.geonames.org/searchJSON?featureCode=PPLA&name_startsWith=${starts}&maxRows=5&username=vovarama13`);
         if (!res.ok) {
             throw new Error("error");
         }
