@@ -96,6 +96,7 @@ function WeatherForm({ callback = getWeather }) {
         if (isHighSpeed) { // у пользователя достаточно быстрое соединение?
         
         startWithFromApi(transText).then(results => {
+            if (text) {
         if (text.length > 0) {
         let textText = transText[0].toUpperCase() + transText.slice(1); 
         finalList = [...finalList, ...results];
@@ -104,6 +105,7 @@ function WeatherForm({ callback = getWeather }) {
         finalList = uniquer(finalList);
         setList(finalList);
         setShow(true);
+        }
         
         
         }
@@ -357,3 +359,4 @@ function Button() {
 
 
 export default WeatherForm;
+
